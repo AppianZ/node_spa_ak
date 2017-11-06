@@ -13,18 +13,11 @@ app.use('*', (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-let routesFiles = fs.readdirSync(`./dist/router/`);
-routesFiles.forEach((file) => {
-  if (file.indexOf('.js') < 0) return;
-  require(`./router/${file}`)(app);
-});
-
 let httpFiles = fs.readdirSync(`./dist/http/`);
 httpFiles.forEach((file) => {
     if (file.indexOf('.js') < 0) return;
     require(`./http/${file}`)(app);
 });
-
 
 app.use(async(err, req: Request, res: Response, next: NextFunction) => {
   const redirectUrl = getRedirectUrl(req);

@@ -7,7 +7,10 @@ router.post('/auth', async function (req: Request, res: Response, next: NextFunc
     const list = new TestApi(req).getUser('appian');
     try {
         const result = await list;
-        res.send(result);
+        res.send({
+            name: 'appian',
+            age: 23
+        });
     } catch (err) {
         next(err);
     }
