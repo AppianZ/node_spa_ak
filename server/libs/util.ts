@@ -29,7 +29,7 @@ export function getFullUrl(req: Request) {
  * @param data  页面所需首屏数据
  */
 export function baseRender(viewPath: string, data?: any) {
-  const p = 'public';
+ /* const p = 'public';
   console.log(`+++ node/libs/util.js - viewPath +++ ${p}/views/${viewPath}`);
   console.log(`+++ node/libs/util.js - data +++ ${JSON.stringify(data)}`);
 
@@ -37,5 +37,5 @@ export function baseRender(viewPath: string, data?: any) {
     this.render(`${p}/views/${viewPath}`, data);
   } else {
     this.render(`${p}/views/${viewPath}`, {state: JSON.stringify(data)});
-  }
+  }*/
 }

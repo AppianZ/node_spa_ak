@@ -3,7 +3,7 @@ const router = Router();
 // import checkToken from '../middleware/check.token';
 import TestApi from '../apis/test';
 
-router.post('/auth', async function (req: Request, res: Response, next: NextFunction) {
+router.post('/authuser', async function (req: Request, res: Response, next: NextFunction) {
     const list = new TestApi(req).getUser('appian');
     try {
         const result = await list;
@@ -16,7 +16,7 @@ router.post('/auth', async function (req: Request, res: Response, next: NextFunc
     }
 });
 
-router.post('/test', async function (req: Request, res: Response, next: NextFunction) {
+router.post('/auth', async function (req: Request, res: Response, next: NextFunction) {
     const list = new TestApi(req).getToken({
         "platform": "app",
         "type": "URL",
@@ -26,13 +26,15 @@ router.post('/test', async function (req: Request, res: Response, next: NextFunc
     });
     try {
         const result = await list;
-        res.send(result);
+        console.log('--- await ---')
+        console.log(result.data)
+        res.send(result.data);
     } catch (err) {
         next(err);
     }
 });
 
 module.exports = function (app) {
-  app.use('/api', router);
+  app.use('/', router);
 };
 

@@ -7,7 +7,7 @@ const common = {};
 const test = {
     port: '3002',
     // baseURL: 'https://api.github.com/',
-    baseURL: 'http://54.222.196.128:8081/api/',
+    baseURL: 'http://54.222.196.128:8081',
 };
 
 const pro = {
