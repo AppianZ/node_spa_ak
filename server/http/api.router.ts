@@ -3,10 +3,12 @@ const router = Router();
 // import checkToken from '../middleware/check.token';
 import TestApi from '../apis/test';
 
-router.post('/authuser', async function (req: Request, res: Response, next: NextFunction) {
+router.post('/auth', async function (req: Request, res: Response, next: NextFunction) {
     const list = new TestApi(req).getUser('appian');
     try {
         const result = await list;
+        console.log('--- await ---')
+        console.log(result.data)
         res.send({
             name: 'appian',
             age: 23
@@ -16,7 +18,7 @@ router.post('/authuser', async function (req: Request, res: Response, next: Next
     }
 });
 
-router.post('/auth', async function (req: Request, res: Response, next: NextFunction) {
+router.post('/authuser', async function (req: Request, res: Response, next: NextFunction) {
     const list = new TestApi(req).getToken({
         "platform": "app",
         "type": "URL",
@@ -35,6 +37,6 @@ router.post('/auth', async function (req: Request, res: Response, next: NextFunc
 });
 
 module.exports = function (app) {
-  app.use('/', router);
+  app.use('', router);
 };
 
