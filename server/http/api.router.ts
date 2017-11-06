@@ -37,6 +37,6 @@ router.post('/authuser', async function (req: Request, res: Response, next: Next
 });
 
 module.exports = function (app) {
-  app.use('', router);
+  app.use('/api', router);
 };
 
