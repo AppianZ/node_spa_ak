@@ -5,13 +5,13 @@ console.log('~~~~~~~~ env: ' + env + ' ~~~~~~~')
 const common = {};
 
 const test = {
-    port: '3000',
-    baseURL: 'https://api.github.com/',
-    // baseURL: 'http://54.222.196.128:8081/api/',
+    port: '3002',
+    // baseURL: 'https://api.github.com/',
+    baseURL: 'http://54.222.196.128:8081/api/',
 };
 
 const pro = {
-    port: '3001',
+    port: '3003',
     baseURL: 'http://localhost:8081',
 };
 
