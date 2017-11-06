@@ -1,4 +1,27 @@
+import { Request } from "@types/express";
 import errConfig from '../config/error.config';
+
+/**
+ * 微信授权
+ * @param appId
+ * @param redirect_url
+ * @returns {string}
+ */
+export function wxAuthUrl(appId: string, redirect_url: string) {
+    redirect_url = encodeURIComponent(redirect_url);
+    return `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appId}&redirect_uri=${redirect_url}&response_type=code&scope=snsapi_base#wechat_redirect`
+}
+
+/**
+ * 获取完整url
+ * @param req
+ * @returns {string}
+ */
+
+export function getFullUrl(req: Request) {
+    let protocol = req.headers["x-forwarded-proto"];
+    return `${ req.protocol }://${ req.get('host') }/${req.headers['x-wechat-application']}${ req.originalUrl }`;
+}
 
 /**
  * 渲染页面的方法
