@@ -4,7 +4,7 @@ import appConfig from '../config/app.config';
 // let instanceAxios:any = axios.create();
 
 // instanceAxios.defaults.baseURL = appConfig.baseURL;
-axios.interceptors.response.use(function (response) {
+/*axios.interceptors.response.use(function (response) {
     console.log('------ instanceAxios ---- response----');
     console.log(response);
 
@@ -14,7 +14,7 @@ axios.interceptors.response.use(function (response) {
         throw error;
     }
     return Promise.reject(error);
-});
+});*/
 
 function generatorUrl(url: string, data: any = {}) {
     if (JSON.stringify(data) == '{}') return url;
