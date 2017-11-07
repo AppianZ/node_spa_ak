@@ -34,6 +34,7 @@ function ajax(req: Request, options: any = {}) {
         method,
         baseURL: appConfig.baseURL,
         data,
+        headers: options.headers,
     }
     console.log('------ httpObj ---- httpObj----');
     console.log(httpObj);
