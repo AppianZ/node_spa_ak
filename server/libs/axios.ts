@@ -49,10 +49,10 @@ function ajax(req: Request, options: any = {}) {
 
     return axios(httpObj).then(function(resData) {
         console.log('------ axioscb ---- response ----');
-        return resData.data;
+        return resData;
     }, function (resErr) {
         console.log('------ axioscb ---- resErr ----');
-        return resData.data;
+        return resErr;
     });
 }
 

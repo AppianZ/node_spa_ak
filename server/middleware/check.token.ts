@@ -16,7 +16,7 @@ export default async function (req:Request, res:Response, next:NextFunction) {
       }, 'form');
 
       // res设置cookie.x-auth-token
-      const token = util.UpperFirstLetterret(ret.data.token_type) + '' + ret.data.token;
+      const token = util.UpperFirstLetter(ret.data.token_type) + ' ' + ret.data.access_token;
       res.cookie('Authorization', token, {
         // domain: cookieDomain,
         maxAge: expiresTime,
