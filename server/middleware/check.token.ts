@@ -4,11 +4,11 @@ const expiresTime:number = 3 * 24 * 60 * 60 * 1000; // cookies 过期时间 3d
 import * as util from '../libs/util';
 
 export default async function (req:Request, res:Response, next:NextFunction) {
-  console.log('------ checktoken2 ---- data ----');
-  console.log(req.body);
+  console.log('------ checktoken22222 ---- data ----');
+  console.log(req);
 
   try {
-      const ret =  await http.post(this.req, '/api/v1/uac/oauth/token', {
+      const ret = await http.post(this.req, '/api/v1/uac/oauth/token', {
           data: req.body,
           headers: {
               'Authorization': 'Basic c29wX2FwcF9wbGF0Zm9ybTpZWEJ3Y0d4aGRHWnZjbTFmYzJWamNtVjA=',

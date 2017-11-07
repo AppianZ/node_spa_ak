@@ -3,7 +3,7 @@ const router = Router();
 import checkToken from '../middleware/check.token';
 import TestApi from '../apis/test';
 
-router.post('/newauth', async function (req: Request, res: Response, next: NextFunction) {
+router.post('/newauth', checkToken, async function (req: Request, res: Response, next: NextFunction) {
    console.log('---- newauth --- awaitdata ---');
     console.log(req.body);
     // console.log(req['Authorization']);
