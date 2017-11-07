@@ -34,7 +34,7 @@ function ajax(req: Request, options: any = {}) {
         url,
         method,
         baseURL: appConfig.baseURL,
-        data: qs.stringify(data),
+        data,
         headers: options.headers,
     }
 
