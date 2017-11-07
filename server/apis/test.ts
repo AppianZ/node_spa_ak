@@ -41,9 +41,7 @@ class TestApi {
     }
 
     async getTest(data:any) {
-        const test = await http.get(this.req, '/cust/platform/customer', {
-            data,
-        });
+        const test = await http.get(this.req, '/cust/platform/customer?platform=app');
         return test;
     }
 }
