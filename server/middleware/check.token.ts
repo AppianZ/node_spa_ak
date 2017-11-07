@@ -4,11 +4,9 @@ import * as util from '../libs/util';
 import TestApi from '../apis/test';
 
 export default async function (req:Request, res:Response, next:NextFunction) {
-  console.log('------ check token middleware ---- data ----');
-  console.log(req.cookies['Authorization']);
-
   if (req.cookies['authorization']) {
       console.log('------ cookies里的token尚未过期 ----');
+      console.log(req.cookies['Authorization']);
       req.headers['Authorization'] = req.cookies['authorization'];
       next();
   } else {

@@ -15,14 +15,10 @@ router.post('/newauth', checkToken, async function (req: Request, res: Response,
 
 
 router.get('/newtest', checkToken, async function (req: Request, res: Response, next: NextFunction) {
-    console.log('---- newtest --- awaitdata ---');
-    console.log(req.headers['Authorization']);
-    // console.log(req['Authorization']);
     try {
         const result = await new TestApi(req).getTest(req.body);
-        console.log('--- await2 ---')
-        console.log(result);
-        res.send(result);
+        console.log(result.data);
+        res.send(result.data);
     } catch (err) {
         next(err);
     }
