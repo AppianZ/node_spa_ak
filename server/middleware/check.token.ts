@@ -8,6 +8,7 @@ export default async function (req:Request, res:Response, next:NextFunction) {
   console.log(req.cookies['Authorization']);
 
   if (req.cookies['authorization']) {
+      req['Authorization'] = req.cookies['authorization'];
       next();
   } else {
       try {
