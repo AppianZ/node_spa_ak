@@ -18,7 +18,7 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
 });
 
 
-router.post('/newtest', checkToken, async function (req: Request, res: Response, next: NextFunction) {
+router.get('/newtest', checkToken, async function (req: Request, res: Response, next: NextFunction) {
     console.log('---- newtest --- awaitdata ---');
     console.log(req.body);
     // console.log(req['Authorization']);
