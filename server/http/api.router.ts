@@ -8,7 +8,7 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
     console.log(req.body);
     // console.log(req['Authorization']);
     try {
-        const result = await new TestApi(req).getToken(req.body)
+        const result = await new TestApi(req).getToken(req.body);
         console.log('--- await ---')
         console.log(result);
         res.send(result);
