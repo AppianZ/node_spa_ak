@@ -9,7 +9,7 @@ export default async function (req:Request, res:Response, next:NextFunction) {
 
   if (req.cookies['authorization']) {
       console.log('------ cookies里的token尚未过期 ----');
-      req['Authorization'] = req.cookies['authorization'];
+      req.headers['Authorization'] = req.cookies['authorization'];
       next();
   } else {
       try {
