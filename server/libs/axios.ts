@@ -28,7 +28,7 @@ function ajax(req: Request, options: any = {}) {
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
 
     console.log('------ ajaxtoken ---- req ----');
-    console.log(req);
+    console.log(options.url);
 
     const headers = Object.assign({
      'Authorization': req['Authorization'] || '',
