@@ -20,7 +20,6 @@ httpFiles.forEach((file) => {
 });
 
 app.use(async(err, req: Request, res: Response, next: NextFunction) => {
-  const redirectUrl = getRedirectUrl(req);
   if (!err.response) { // node 挂了
     err = new Error(err);
     console.log(err,'-------这里是node挂了');

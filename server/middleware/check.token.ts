@@ -9,7 +9,6 @@ export default async function (req:Request, res:Response, next:NextFunction) {
 
   try {
       const ret = await http.post(req, '/api/v1/uac/oauth/token', {
-        method: 'post',
         data: req.body,
         headers: {
             Authorization: 'Basic c29wX2FwcF9wbGF0Zm9ybTpZWEJ3Y0d4aGRHWnZjbTFmYzJWamNtVjA=',

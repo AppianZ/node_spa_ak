@@ -27,15 +27,18 @@ function ajax(req: Request, options: any = {}) {
     const data = options.data || {};
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
 
-    /*   const headers = Object.assign({
-     'x-auth-token': req['x-auth-token'] || '',
-     }, options.headers || {});*/
+    console.log('------ ajaxtoken ---- req ----');
+    console.log(req);
+
+    const headers = Object.assign({
+     'Authorization': req['Authorization'] || '',
+    }, options.headers || {});
 
     return instanceAxios({
         method,
         data,
         url,
-        headers: options.headers || {},
+        headers: headers || {},
     })
 }
 
