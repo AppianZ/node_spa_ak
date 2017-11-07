@@ -3,7 +3,15 @@ const router = Router();
 import checkToken from '../middleware/check.token';
 import TestApi from '../apis/test';
 
-router.post('/newauth', checkToken);
+router.post('/newauth', checkToken, async function (req: Request, res: Response, next: NextFunction) {
+    try {
+        res.send({
+            msg: 'ok, to homepage',
+        });
+    } catch (err) {
+        next(err);
+    }
+});
 
 
 router.get('/newtest', checkToken, async function (req: Request, res: Response, next: NextFunction) {

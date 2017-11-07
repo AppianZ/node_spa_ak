@@ -5,21 +5,25 @@ import TestApi from '../apis/test';
 
 export default async function (req:Request, res:Response, next:NextFunction) {
   console.log('------ check token middleware ---- data ----');
-  console.log(req.body);
+  console.log(req.cookies['Authorization']);
 
-  try {
-      const ret = await new TestApi(req).getToken(req.body);
-      // res设置cookie.x-auth-token
-      const token = util.UpperFirstLetter(ret.data.token_type) + ' ' + ret.data.access_token;
-      console.log('------ 获取token成功 ---- data ----');
-      console.log(token);
-      res.cookie('Authorization', token, {
-        // domain: cookieDomain,
-        maxAge: expiresTime,
-      });
-      req['Authorization'] = token;
+  if (req.cookies['authorization']) {
       next();
-  } catch (error) {
-      next(error);
+  } else {
+      try {
+          const ret = await new TestApi(req).getToken(req.body);
+          // res设置cookie.x-auth-token
+          const token = util.UpperFirstLetter(ret.data.token_type) + ' ' + ret.data.access_token;
+          console.log('------ 获取token成功 ---- data ----');
+          console.log(token);
+          res.cookie('authorization', token, {
+              // domain: cookieDomain,
+              maxAge: expiresTime,
+          });
+          req['Authorization'] = token;
+          next();
+      } catch (error) {
+          next(error);
+      }
   }
 };
