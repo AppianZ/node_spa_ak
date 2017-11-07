@@ -1,15 +1,13 @@
 import { Router, Request, Response, NextFunction } from 'express';
 const router = Router();
-// import checkToken from '../middleware/check.token';
+import checkToken from '../middleware/check.token';
 import TestApi from '../apis/test';
 
-router.post('/newauth', async function (req: Request, res: Response, next: NextFunction) {
-    var data;
-
-    // const list = new TestApi(req).getUser('appian');
+router.post('/newauth', checkToken, async function (req: Request, res: Response, next: NextFunction) {
+    console.log('---- newauth --- awaitdata ---');
+    console.log(req.body);
+    console.log(req['Authorization']);
     try {
-        console.log('--- awaitdata ---');
-        console.log(req.body);
         console.log('--- await ---')
         res.send({
             name: 'appian',
