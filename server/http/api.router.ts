@@ -9,11 +9,7 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
     // const list = new TestApi(req).getUser('appian');
     try {
         console.log('--- awaitdata ---');
-        console.log(req);
-        req.on('data', function(chunk) {  data += chunk; });
-        req.on('end', function() {
-            console.log(data);
-        });
+        console.log(req.body);
         console.log('--- await ---')
         res.send({
             name: 'appian',
