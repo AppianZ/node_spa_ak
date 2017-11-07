@@ -4,7 +4,7 @@ const expiresTime:number = 3 * 24 * 60 * 60 * 1000; // cookies 过期时间 3d
 import * as util from '../libs/util';
 
 export default async function (req:Request, res:Response, next:NextFunction) {
-  console.log('------ checktoken ---- data ----');
+  console.log('------ checktoken2 ---- data ----');
   console.log(req.body);
 
   try {
