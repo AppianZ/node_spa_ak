@@ -1,5 +1,6 @@
 import { Request } from '@types/express';
 import axios from 'axios';
+import qs from 'qs';
 import appConfig from '../config/app.config';
 // let instanceAxios:any = axios.create();
 
@@ -74,7 +75,7 @@ export function post(req: Request, url: string, options: any = {}, type?: string
     return ajax(req, {
         url: url,
         method: 'post',
-        data: type == 'json' ? JSON.stringify(data) : data,
+        data: type == 'json' ? JSON.stringify(data) : qs.stringify(data),
         headers: headers || {},
     })
 }
