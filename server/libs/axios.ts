@@ -36,10 +36,14 @@ function ajax(req: Request, options: any = {}) {
         data,
         headers: options.headers,
     }
-    console.log('------ httpObj ---- httpObj----');
+    console.log('------ httpObj ------');
     console.log(httpObj);
 
-    return axios(httpObj);
+    return axios(httpObj).then(function(resData) {
+        console.log('------ axioscb ---- response----');
+        console.log(resData)
+        return resData;
+    });
 }
 
 export function get(req: Request, url: string, options: any = {}) {
