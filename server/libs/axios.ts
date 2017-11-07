@@ -35,7 +35,13 @@ function ajax(req: Request, options: any = {}) {
         url,
         method,
         baseURL: appConfig.baseURL,
-        data: qs.stringify(data),
+        transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+        }],
         headers: options.headers,
     }
 
