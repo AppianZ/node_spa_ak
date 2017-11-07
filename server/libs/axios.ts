@@ -5,6 +5,11 @@ let instanceAxios:any = axios.create();
 
 instanceAxios.defaults.baseURL = appConfig.baseURL;
 instanceAxios.interceptors.response.use(function (response) {
+    console.log('------ instanceAxios ---- response----');
+
+    console.log(instanceAxios);
+    console.log(response);
+
     return response;
 }, function (error) {
     if (error.response.status === 401) {
@@ -27,18 +32,14 @@ function ajax(req: Request, options: any = {}) {
     const data = options.data || {};
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
 
-    console.log('------ ajaxtoken ---- req ----');
-
-    const headers = Object.assign({
-     'Authorization': req['Authorization'] || '',
-    }, options.headers || {});
-    console.log(headers);
+    console.log('------ ajaxtoken ---- req 2----');
+    console.log(options.headers);
 
     return instanceAxios({
         method,
         data,
         url,
-        headers: headers || {},
+        headers: options.headers || {},
     })
 }
 
