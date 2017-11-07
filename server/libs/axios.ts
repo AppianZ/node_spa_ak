@@ -1,6 +1,5 @@
 import { Request } from '@types/express';
 import axios from 'axios';
-import qs from 'qs';
 import appConfig from '../config/app.config';
 // let instanceAxios:any = axios.create();
 
@@ -50,7 +49,7 @@ function ajax(req: Request, options: any = {}) {
 
     return axios(httpObj).then(function(resData) {
         console.log('------ axioscb ---- response ----');
-        console.log(resData)
+        console.log(resData.data)
     }, function (resErr) {
         console.log('------ axioscb ---- resErr ----');
         console.log(resErr)

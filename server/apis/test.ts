@@ -39,6 +39,13 @@ class TestApi {
         }, 'form');
         return token;
     }
+
+    async getTest(data:any) {
+        const test = await http.get(this.req, '/cust/platform/customer', {
+            data,
+        });
+        return test;
+    }
 }
 
 export default TestApi;

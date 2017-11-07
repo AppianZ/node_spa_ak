@@ -8,7 +8,22 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
     console.log(req.body);
     // console.log(req['Authorization']);
     try {
-        const result =  new TestApi(req).getToken(req.body)
+        const result = await new TestApi(req).getToken(req.body)
+        console.log('--- await ---')
+        console.log(result);
+        res.send(result);
+    } catch (err) {
+        next(err);
+    }
+});
+
+
+router.post('/newtest', async function (req: Request, res: Response, next: NextFunction) {
+    console.log('---- newtest --- awaitdata ---');
+    console.log(req.body);
+    // console.log(req['Authorization']);
+    try {
+        const result =  new TestApi(req).getTest(req.body);
         console.log('--- await ---')
         console.log(result);
         res.send({
@@ -19,6 +34,7 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
         next(err);
     }
 });
+
 
 router.post('/auth', async function (req: Request, res: Response, next: NextFunction) {
     const list = new TestApi(req).getUser('appian');
