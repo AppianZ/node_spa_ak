@@ -72,7 +72,7 @@ export function post(req: Request, url: string, options: any = {}, type?: string
     return ajax(req, {
         url: url,
         method: 'post',
-        data: type == 'json' ? JSON.stringify(data) : data,
+        data: type == 'json' ? JSON.stringify(data) : JSON.parse(data),
         headers: headers || {},
     })
 }
