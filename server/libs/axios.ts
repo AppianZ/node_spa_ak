@@ -34,7 +34,7 @@ function ajax(req: Request, options: any = {}) {
         url,
         method,
         baseURL: appConfig.baseURL,
-        data,
+        data: qs.stringify(data),
         headers: options.headers,
     }
 
@@ -75,7 +75,7 @@ export function post(req: Request, url: string, options: any = {}, type?: string
     return ajax(req, {
         url: url,
         method: 'post',
-        data: type == 'json' ? JSON.stringify(data) : qs.stringify(data),
+        data: type == 'json' ? JSON.stringify(data) : data,
         headers: headers || {},
     })
 }
