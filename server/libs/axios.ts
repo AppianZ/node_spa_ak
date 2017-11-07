@@ -39,14 +39,13 @@ function ajax(req: Request, options: any = {}) {
     }
 
     console.log('------ httpObj ------');
-    console.log(typeof data);
     console.log(httpObj);
 
     return axios(httpObj).then(function(resData) {
-        console.log('------ axioscb ---- response----');
+        console.log('------ axioscb ---- response ----');
         console.log(resData)
     }, function (resErr) {
-        console.log('------ axioscb ---- resErr----');
+        console.log('------ axioscb ---- resErr ----');
         console.log(resErr)
     });
 }
