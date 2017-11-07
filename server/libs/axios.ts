@@ -30,7 +30,6 @@ function ajax(req: Request, options: any = {}) {
     const method = options.method || 'get';
     const data = options.data || {};
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
-    console.log(qs);
     const httpObj = {
         url,
         method,
@@ -42,6 +41,7 @@ function ajax(req: Request, options: any = {}) {
             }
             return ret
         }],
+        data,
         headers: options.headers,
     }
 
