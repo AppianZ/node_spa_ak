@@ -8,6 +8,7 @@ export default async function (req:Request, res:Response, next:NextFunction) {
   console.log(req.cookies['Authorization']);
 
   if (req.cookies['authorization']) {
+      console.log('------ cookies里的token尚未过期 ----');
       req['Authorization'] = req.cookies['authorization'];
       next();
   } else {
