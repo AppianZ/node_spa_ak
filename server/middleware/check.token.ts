@@ -5,7 +5,7 @@ import * as util from '../libs/util';
 
 export default async function (req:Request, res:Response, next:NextFunction) {
   console.log('------ checktoken22222 ---- data ----');
-  console.log(req);
+  console.log(req.body);
 
   try {
       const ret = await http.post(this.req, '/api/v1/uac/oauth/token', {
