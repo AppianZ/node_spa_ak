@@ -16,7 +16,7 @@ router.post('/newauth', checkToken, async function (req: Request, res: Response,
 
 router.get('/newtest', checkToken, async function (req: Request, res: Response, next: NextFunction) {
     console.log('---- newtest --- awaitdata ---');
-    console.log(req.headers);
+    console.log(req.headers['Authorization']);
     // console.log(req['Authorization']);
     try {
         const result = await new TestApi(req).getTest(req.body);
