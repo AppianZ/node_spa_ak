@@ -4,11 +4,11 @@ import checkToken from '../middleware/check.token';
 import TestApi from '../apis/test';
 
 router.post('/newauth', async function (req: Request, res: Response, next: NextFunction) {
-   /* console.log('---- newauth --- awaitdata ---');
+   console.log('---- newauth --- awaitdata ---');
     console.log(req.body);
-    console.log(req['Authorization']);*/
+    // console.log(req['Authorization']);
     try {
-        const result =  new TestApi(req).getToken()
+        const result =  new TestApi(req).getToken(req.body)
         console.log('--- await ---')
         console.log(result);
         res.send({
