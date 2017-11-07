@@ -14,9 +14,7 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
         req.on('end', function() {
             console.log(data);
         });
-        const result = await list;
         console.log('--- await ---')
-        console.log(result.data)
         res.send({
             name: 'appian',
             age: 23
