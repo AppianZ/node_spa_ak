@@ -36,7 +36,9 @@ function ajax(req: Request, options: any = {}) {
         data,
         headers: options.headers,
     }
+
     console.log('------ httpObj ------');
+    console.log(typeof data);
     console.log(httpObj);
 
     return axios(httpObj).then(function(resData) {
