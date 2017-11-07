@@ -39,10 +39,9 @@ function ajax(req: Request, options: any = {}) {
     console.log('------ httpObj ------');
     console.log(httpObj);
 
-    axios(httpObj).then(function(resData) {
+    return axios(httpObj).then(function(resData) {
         console.log('------ axioscb ---- response----');
         console.log(resData)
-        return resData;
     }, function (resErr) {
         console.log('------ axioscb ---- resErr----');
         console.log(resErr)
