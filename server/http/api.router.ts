@@ -6,9 +6,10 @@ import TestApi from '../apis/test';
 router.post('/newauth', async function (req: Request, res: Response, next: NextFunction) {
     var data;
 
-    const list = new TestApi(req).getUser('appian');
+    // const list = new TestApi(req).getUser('appian');
     try {
-        console.log('--- awaitdata ---')
+        console.log('--- awaitdata ---');
+        console.log(req);
         req.on('data', function(chunk) {  data += chunk; });
         req.on('end', function() {
             console.log(data);
