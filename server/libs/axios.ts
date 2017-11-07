@@ -1,13 +1,11 @@
 import { Request } from '@types/express';
 import axios from 'axios';
 import appConfig from '../config/app.config';
-let instanceAxios:any = axios.create();
+// let instanceAxios:any = axios.create();
 
-instanceAxios.defaults.baseURL = appConfig.baseURL;
-instanceAxios.interceptors.response.use(function (response) {
+// instanceAxios.defaults.baseURL = appConfig.baseURL;
+axios.interceptors.response.use(function (response) {
     console.log('------ instanceAxios ---- response----');
-
-    console.log(instanceAxios);
     console.log(response);
 
     return response;
@@ -31,16 +29,16 @@ function ajax(req: Request, options: any = {}) {
     const method = options.method || 'get';
     const data = options.data || {};
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
-
-    console.log('------ ajaxtoken ---- req 2----');
-    console.log(options.headers);
-
-    return instanceAxios({
-        method,
-        data,
+    const httpObj = {
         url,
-        headers: options.headers || {},
-    })
+        method,
+        baseURL: appConfig.baseURL,
+        data,
+    }
+    console.log('------ httpObj ---- httpObj----');
+    console.log(httpObj);
+
+    return axios(httpObj);
 }
 
 export function get(req: Request, url: string, options: any = {}) {
