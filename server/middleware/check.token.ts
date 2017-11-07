@@ -4,47 +4,28 @@ const expiresTime:number = 3 * 24 * 60 * 60 * 1000; // cookies 过期时间 3d
 import * as util from '../libs/util';
 
 export default async function (req:Request, res:Response, next:NextFunction) {
-  const redirectUrl:string = util.getRedirectUrl(req);
-  const debugid:string = req.query.debugid;
-  const code:string = req.query.code;
-  // console.log(redirectUrl, '------redirectUrl处理后');
+  console.log('------ checktoken2 ---- data ----');
+  console.log(req.body);
+
   try {
-    if (code || debugid) {
-      const ret = await http.post(req, '/token', {
-        method: 'post',
-        data: debugid ? `debugId=${debugid}` : `code=${code}`,
-      });
+      const ret = await http.post(req, '/api/v1/uac/oauth/token', {
+        data: req.body,
+        headers: {
+            'Authorization': 'Basic c29wX2FwcF9wbGF0Zm9ybTpZWEJ3Y0d4aGRHWnZjbTFmYzJWamNtVjA=',
+        },
+      }, 'form');
 
       // res设置cookie.x-auth-token
-      res.cookie('x-auth-token', ret.data.token, {
+      const token = util.UpperFirstLetterret(ret.data.token_type) + '' + ret.data.token;
+      res.cookie('x-auth-token', token, {
         // domain: cookieDomain,
         maxAge: expiresTime,
       });
-
-      req['x-auth-token'] = ret.data.token;
+      console.log('------ 获取token成功 ---- data ----');
+      console.log(token);
+      req['Authorization'] = token;
       next();
-    } else {
-      const token:string = req.cookies['x-auth-token'];
-      if (token) {
-        const ret = await http.post(req, '/token/check', {
-          method: 'post',
-          data: `token=${token}`
-        });
-        req['x-auth-token'] = token;
-        next();
-      } else {
-        throw new Error("Not found x-auth-token in cookies");
-      }
-    }
   } catch (error) {
-    const platformAlias:string = util.getApplication(req) || 'test';
-    try {
-      return res.baseRender('common/loading', {
-        redirectUrl: redirectUrl,
-      });
-    } catch (err) {
-      next(err);
-    }
+      next(error);
   }
-
 };

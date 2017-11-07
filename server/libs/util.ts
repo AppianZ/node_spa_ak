@@ -39,3 +39,17 @@ export function baseRender(viewPath: string, data?: any) {
     this.render(`${p}/views/${viewPath}`, {state: JSON.stringify(data)});
   }*/
 }
+
+
+/**
+ * 首字母大写的方法
+ * @param str 需要大写的字符串
+ */
+
+export function UpperFirstLetter(str: string) {
+    var str = str.toLowerCase();
+    str = str.replace(/\b\w+\b/g, function(word){
+        return word.substring(0,1).toUpperCase()+word.substring(1);
+    });
+    return str;
+}

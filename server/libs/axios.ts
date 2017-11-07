@@ -1,17 +1,21 @@
 import { Request } from '@types/express';
 import axios from 'axios';
+import qs from 'qs';
 import appConfig from '../config/app.config';
-let instanceAxios:any = axios.create();
+// let instanceAxios:any = axios.create();
 
-instanceAxios.defaults.baseURL = appConfig.baseURL;
-instanceAxios.interceptors.response.use(function (response) {
+// instanceAxios.defaults.baseURL = appConfig.baseURL;
+/*axios.interceptors.response.use(function (response) {
+    console.log('------ instanceAxios ---- response----');
+    console.log(response);
+
     return response;
 }, function (error) {
     if (error.response.status === 401) {
         throw error;
     }
     return Promise.reject(error);
-});
+});*/
 
 function generatorUrl(url: string, data: any = {}) {
     if (JSON.stringify(data) == '{}') return url;
@@ -26,17 +30,25 @@ function ajax(req: Request, options: any = {}) {
     const method = options.method || 'get';
     const data = options.data || {};
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
-
-    /*   const headers = Object.assign({
-     'x-auth-token': req['x-auth-token'] || '',
-     }, options.headers || {});*/
-
-    return instanceAxios({
-        method,
-        data,
+    const httpObj = {
         url,
-        headers: options.headers || {},
-    })
+        method,
+        baseURL: appConfig.baseURL,
+        data,
+        headers: options.headers,
+    }
+
+    console.log('------ httpObj ------');
+    console.log(typeof data);
+    console.log(httpObj);
+
+    return axios(httpObj).then(function(resData) {
+        console.log('------ axioscb ---- response----');
+        console.log(resData)
+    }, function (resErr) {
+        console.log('------ axioscb ---- resErr----');
+        console.log(resErr)
+    });
 }
 
 export function get(req: Request, url: string, options: any = {}) {
@@ -63,7 +75,7 @@ export function post(req: Request, url: string, options: any = {}, type?: string
     return ajax(req, {
         url: url,
         method: 'post',
-        data: type == 'json' ? JSON.stringify(data) : data,
+        data: type == 'json' ? JSON.stringify(data) : qs.stringify(data),
         headers: headers || {},
     })
 }
