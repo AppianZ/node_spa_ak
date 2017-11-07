@@ -10,7 +10,7 @@ router.post('/newauth', async function (req: Request, res: Response, next: NextF
     try {
         const result =  new TestApi(req).getToken()
         console.log('--- await ---')
-        console.log(result.data);
+        console.log(result);
         res.send({
             name: 'appian',
             age: 23
