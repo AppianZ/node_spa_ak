@@ -8,16 +8,16 @@ export default async function (req:Request, res:Response, next:NextFunction) {
   console.log(req.body);
 
   try {
-      const ret = await http.post(req, '/api/v1/uac/oauth/token', {
-        data: req.body,
-        headers: {
-            'Authorization': 'Basic c29wX2FwcF9wbGF0Zm9ybTpZWEJ3Y0d4aGRHWnZjbTFmYzJWamNtVjA=',
-        },
+      const ret =  await http.post(this.req, '/api/v1/uac/oauth/token', {
+          data: req.body,
+          headers: {
+              'Authorization': 'Basic c29wX2FwcF9wbGF0Zm9ybTpZWEJ3Y0d4aGRHWnZjbTFmYzJWamNtVjA=',
+          },
       }, 'form');
 
       // res设置cookie.x-auth-token
       const token = util.UpperFirstLetterret(ret.data.token_type) + '' + ret.data.token;
-      res.cookie('x-auth-token', token, {
+      res.cookie('Authorization', token, {
         // domain: cookieDomain,
         maxAge: expiresTime,
       });
