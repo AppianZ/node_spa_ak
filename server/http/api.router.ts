@@ -23,13 +23,10 @@ router.post('/newtest', checkToken, async function (req: Request, res: Response,
     console.log(req.body);
     // console.log(req['Authorization']);
     try {
-        const result =  new TestApi(req).getTest(req.body);
-        console.log('--- await ---')
+        const result = await new TestApi(req).getTest(req.body);
+        console.log('--- await2 ---')
         console.log(result);
-        res.send({
-            name: 'appian',
-            age: 23
-        });
+        res.send(result);
     } catch (err) {
         next(err);
     }
