@@ -1,6 +1,5 @@
 import { Request } from '@types/express';
 import axios from 'axios';
-import qs from 'qs';
 import appConfig from '../config/app.config';
 // let instanceAxios:any = axios.create();
 
@@ -30,12 +29,22 @@ function ajax(req: Request, options: any = {}) {
     const method = options.method || 'get';
     const data = options.data || {};
     const url = method == 'get' ? generatorUrl(options.url, data) : options.url;
+    const headers =  Object.assign(options.headers, {
+        'Authorization' : req.headers['Authorization'],
+    })
     const httpObj = {
         url,
         method,
         baseURL: appConfig.baseURL,
-        data: qs.stringify(data),
-        headers: options.headers,
+        transformRequest: [function (data) {
+            let ret = ''
+            for (let it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+        }],
+        data,
+        headers,
     }
 
     console.log('------ httpObj ------');
@@ -43,10 +52,10 @@ function ajax(req: Request, options: any = {}) {
 
     return axios(httpObj).then(function(resData) {
         console.log('------ axioscb ---- response ----');
-        console.log(resData)
+        return resData;
     }, function (resErr) {
         console.log('------ axioscb ---- resErr ----');
-        console.log(resErr)
+        return resErr;
     });
 }
 
