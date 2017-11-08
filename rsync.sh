@@ -17,7 +17,7 @@ if [ $type == "multi" ]; then
 	echo "NOW UPDATING: ====== "$path
 	rsync -rlptDvz -e ssh --rsync-path='sudo rsync' $sshremote:$path ./public/
 elif [ $type == "spa" ]; then
-	path=$path$project$public
+	path=$path$project$dist
   echo "NOW UPDATING: ====== "$path
 	rsync -rlptDvz -e ssh --rsync-path='sudo rsync' $sshremote:$path ./public/
 fi
